@@ -8,15 +8,15 @@ class Database
   private function connect()
   {
     // code...
-    $string = "mysql:host=localhost;dbname=school_db";
-    if(!$con = new PDO($string, 'root', 'school_db_pass')){
+    $string = DBDRIVER . ":host=" . DBHOST . ";dbname=" . DBNAME;
+    if(!$con = new PDO($string, DBUSER, DBPASS)){
       die("could not connect to database");
     }
 
     return $con;
   }
 
-  public function run($query, $data = array(), $data_type = "object")
+  public function query($query, $data = array(), $data_type = "object")
   {
     $con = $this->connect();
     $stm = $con->prepare($query);
@@ -36,9 +36,5 @@ class Database
       }
     }
     return false;
-  }
-
-  public function query()
-  {
   }
 }
