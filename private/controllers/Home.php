@@ -8,8 +8,12 @@ class Home extends Controller
   function index()
   {
     // code...
-    $db = new Database();
-    $data = $db->query("select * from users");
+    $user = $this->load_model('User');
+
+    $data = $user->findAll();
+
+    //$data = $user->where('firstname', 'john');
+
     $this->view('home', ['rows'=>$data]);
   }
 }
