@@ -8,7 +8,7 @@ class Home extends Controller
   function index()
   {
     // code...
-    $user = $this->load_model('User');
+    $user = new User();
 
     $data = $user->findAll();
 
